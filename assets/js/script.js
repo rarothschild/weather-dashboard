@@ -10,13 +10,17 @@ var searchBtn = document.getElementById("search")  // button for exe search
 var storedCities = JSON.parse(localStorage.getItem("weather-app"))
 if (storedCities) {
     // if available, loop through object and display each city
-    // add data attribute with city name to reference within function when clicked
+    newEl = document.createElement("h2")
+    newEl.textContent = ("Recent Searches: ")
+    searchBarEl.appendChild(newEl)
+
     var storedCitiesVal = Object.values(storedCities)
     for (var i = 0; i < storedCitiesVal.length; i++ ) {
 
         newEl = document.createElement("p")
         var storedCity = storedCitiesVal[i]
         newEl.textContent = (storedCity.charAt(0).toUpperCase() + storedCity.slice(1))
+        newEl.setAttribute("class", "link")
         newEl.addEventListener("click", function(event) {
             get_weather(event.target.innerText)
         })
@@ -46,6 +50,8 @@ function get_weather(city) {
 
             var lat = cityObj.lat
             var lon = cityObj.lon 
+            var state = cityObj.state
+            var country = cityObj.country
             var part = 'minutely,hourly,alerts'
             var units = 'imperial'
             var url_weather = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${part}&units=${units}&appid=${api_key}`
@@ -60,7 +66,6 @@ function get_weather(city) {
                 // pull current weather, add to html
                 var dt_unix_0 = data.current.dt
                 var dt_0 = dayjs.unix(dt_unix_0).format("MM-DD-YYYY")
-
                 var temp_0 = data.current.temp
                 var wind_0 = data.current.wind_speed
                 var humidity_0 = data.current.humidity
@@ -71,6 +76,10 @@ function get_weather(city) {
 
                 // clear previous content
                 currentWeatherEl.textContent = ""
+                newEl = document.createElement("h2")
+                newEl.textContent = ("Current Weather for " + city.charAt(0).toUpperCase() + city.slice(1) + ", " + state + ", " + country)
+                newEl.setAttribute("class", "title")
+                currentWeatherEl.appendChild(newEl)
 
                 // create card for current weather
                 card = document.createElement("div")
@@ -91,9 +100,9 @@ function get_weather(city) {
                 card.appendChild(cardImg)
                 card.appendChild(cardContent)
 
-                newEl = document.createElement("h3")
-                newEl.textContent = (city.charAt(0).toUpperCase() + city.slice(1))
-                content.appendChild(newEl)
+                // newEl = document.createElement("h3")
+                // newEl.textContent = (city.charAt(0).toUpperCase() + city.slice(1))
+                // content.appendChild(newEl)
 
                 // newEl = document.createElement("p")
                 // newEl.textContent = (lat + ", " + lon)
@@ -142,8 +151,9 @@ function get_weather(city) {
 
                 // set title for 5 day forecast
                 forecastWeatherEl.textContent = ""
-                newEl = document.createElement("h3")
+                newEl = document.createElement("h2")
                 newEl.textContent = ("5 day forecast:")
+                newEl.setAttribute("class", "title")
                 forecastWeatherEl.appendChild(newEl)
 
                 for (var i = 1; i < 6; i ++) {
