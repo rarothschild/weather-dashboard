@@ -35,7 +35,7 @@ if (storedCities) {
 
 function get_weather(city) {
     // get city name from coordinates
-    var url_city = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${api_key}`
+    var url_city = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${api_key}`
     console.log("URL", url_city)
 
     fetch(url_city)
@@ -72,7 +72,7 @@ function get_weather(city) {
                 var uv_0 = data.current.uvi
 
                 var icon_id = data.current.weather[0].icon
-                var icon_url = `http://openweathermap.org/img/wn/${icon_id}@2x.png`
+                var icon_url = `https://openweathermap.org/img/wn/${icon_id}@2x.png`
 
                 // clear previous content
                 currentWeatherEl.textContent = ""
@@ -165,7 +165,7 @@ function get_weather(city) {
                     var humidity_1 = data.daily[i].humidity
             
                     var icon_id = data.daily[i].weather[0].icon
-                    var icon_url = `http://openweathermap.org/img/wn/${icon_id}@2x.png`
+                    var icon_url = `https://openweathermap.org/img/wn/${icon_id}@2x.png`
 
                     // create card
                     card = document.createElement("div")
