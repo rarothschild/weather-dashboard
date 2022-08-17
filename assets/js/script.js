@@ -52,7 +52,7 @@ function get_weather(city) {
             var lon = cityObj.lon 
             var state = cityObj.state
             var country = cityObj.country
-            var part = 'minutely,hourly,alerts'
+            var part = 'minutely'
             var units = 'imperial'
             var url_weather = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${part}&units=${units}&appid=${api_key}`
             console.log("URL", url_weather)
