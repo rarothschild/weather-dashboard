@@ -3,4 +3,4 @@ Search cities to view current and forecasted weather!
 
 Visit the deployed application at: https://macgreene14.github.io/weather-dashboard/
 
-![Screenshot of the weather dashboard](https://user-images.githubusercontent.com/33014789/184781849-4974cd99-7fb5-4028-9148-4142e872307a.png)
+![Screenshot of the weather dashboard](https://user-images.githubusercontent.com/33014789/184725282-22639646-ea7d-4bea-8369-707e70ee2993.png)
